@@ -5,26 +5,22 @@ import { fetchAIResults } from '../utils/fetchAIResults.js';
 import ErrorBoundary from '../components/ErrorBoundary.js'
 
 const App = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState({});
+  const [, setPrompt] = useState({});
+  const [loading, setLoading] = useState({});
+  const [error, setError] = useState({});
 
   const handleSubmit = async (prompt) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const results = await fetchAIResults(prompt, setData, setError).finally(() => setLoading(false));
-      setData(results);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+    setData({});
+    setError({});
+    setPrompt(prompt);
+    fetchAIResults(prompt, setData, setLoading, setError);
   };
+  console.log(loading)
   return (
     <ErrorBoundary>
       <div className="App">
+        <h1>Compare AI Modals</h1>
         <PromptInput onSubmit={handleSubmit} loading={loading} />
         <Suspense fallback={<div>Loading...</div>}>
           <AIResults data={data} loading={loading} error={error} />

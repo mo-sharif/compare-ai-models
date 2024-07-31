@@ -10,3 +10,10 @@ export const renderSkeletons = (count) => {
         </div>
     ));
 };
+
+
+export const renderSkeleton = (count) => {
+    return Array.from({ length: count }).map((_, index) => (
+        <div key={index} className="skeleton-text" />
+    ));
+};

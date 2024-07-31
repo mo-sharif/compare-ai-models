@@ -16,6 +16,8 @@ const PromptInput = ({ onSubmit, loading }) => {
     [userPrompt, onSubmit]
   );
 
+  const isAnyLoading = Object.values(loading).some(isLoading => isLoading);
+
   return (
     <animated.div style={props} className="card">
       <h2>Enter a Prompt</h2>
@@ -30,9 +32,9 @@ const PromptInput = ({ onSubmit, loading }) => {
         <button
           type="submit"
           onClick={(e) => handleSubmit(e)}
-          disabled={loading}
+          disabled={isAnyLoading}
         >
-          {loading ? "Loading..." : "Submit"}
+          {isAnyLoading ? "Loading..." : "Submit"}
         </button>
       </form>
     </animated.div>
