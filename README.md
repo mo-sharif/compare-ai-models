@@ -7,6 +7,16 @@ This app uses GraphQL to integrate multiple AI models for generating responses f
 - [🌿GraphQL branch](https://github.com/mo-sharif/huggingface-ai-compare/tree/feature/rsc-integration)
 - [🌿React Server Components branch](https://github.com/mo-sharif/huggingface-ai-compare/tree/feature/graphql-integration)
 
+### Start App
+
+```
+cd frontend
+npm run start
+
+cd backend
+npm run start
+```
+
 ### App Structure w/ RSC
 
 See branches above for different app structures
@@ -51,12 +61,15 @@ my-app/
 #### Frontend
 
 1. **User Action Triggers Request:**
+
    - A user interaction, such as submitting a prompt through a form, initiates a data fetch request. This action is handled by a React component, like `PromptInput`.
 
 2. **Send Request to Backend:**
+
    - The frontend uses the `fetch` API to send a POST request to the backend with the user's input. The request is directed to the appropriate backend endpoint.
 
 3. **Manage Loading and Error States:**
+
    - The frontend manages loading states to indicate data fetching and error states to handle any issues during the request. It updates the state based on the response received from the backend.
 
 4. **Receive and Display Data:**
@@ -65,15 +78,18 @@ my-app/
 #### Backend
 
 1. **Receive Request:**
+
    - The backend, built with Express.js, has routes set up to handle incoming API requests. Each route corresponds to a specific service, like `flanT5Small`, `byt5Small`, `phi2`, or `mt5Small`.
 
 2. **Process Request:**
+
    - The backend processes the incoming request by calling external APIs or services with the provided data. It uses modules like `node-fetch` to communicate with these services.
 
 3. **Transform Data:**
+
    - The backend processes the responses from external services, transforming the data as needed to match the frontend's requirements.
 
 4. **Send Response:**
-   - After processing the request, the backend sends the transformed data back to the frontend. This response contains the results fetched from the external services. 
+   - After processing the request, the backend sends the transformed data back to the frontend. This response contains the results fetched from the external services.
 
 By following these steps, the frontend and backend work together seamlessly to fetch, process, and display data based on user interactions.
