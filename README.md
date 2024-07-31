@@ -17,105 +17,63 @@ my-app/
 │   ├── src/
 │   │   ├── config/
 │   │   │   └── apis.js
-│   │   ├── graphql/
-│   │   │   ├── resolvers/
-│   │   │   │   └── index.js
-│   │   │   ├── schemas/
-│   │   │   │   └── index.js
-│   │   │   └── typeDefs.js
 │   │   ├── services/
 │   │   │   └── apiRequest.js
+│   │   ├── routes/
+│   │   │   └── apis.js
 │   │   ├── index.js
 │   │   └── server.js
 │   ├── .env
 │   ├── package.json
 │   ├── package-lock.json
 │   └── README.md
-├── frontend/
-│   ├── src/
-│   │   ├── apollo/
-│   │   │   └── client.js
-│   │   ├── components/
-│   │   │   ├── AIResults.js
-│   │   │   └── PromptInput.js
-│   │   ├── hooks/
-│   │   │   └── useHuggingFaceAPI.js
-│   │   ├── pages/
-│   │   │   └── App.js
-│   │   ├── App.test.js
-│   │   ├── index.css
-│   │   └── index.js
-│   ├── public/
-│   │   └── index.html
-│   ├── .env
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── README.md
-│   └── webpack.config.js
-├── .gitignore
-├── README.md
-└── package.json
+└── frontend/
+    ├── src/
+    │   ├── components/
+    │   │   ├── AIResults.server.js
+    │   │   └── PromptInput.client.js
+    │   ├── pages/
+    │   │   └── App.server.js
+    │   ├── App.js
+    │   ├── index.js
+    │   └── setupTests.js
+    ├── public/
+    │   └── index.html
+    ├── package.json
+    ├── package-lock.json
+    ├── .babelrc
+    ├── jest.config.cjs
+    └── README.md
 ```
 
-### Data Flow: Backend to Frontend with GraphQL
+### Data Flow: Frontend to Backend without GraphQL
 
-#### 1. Frontend
+#### Frontend
 
-1. **User Interaction**:
+1. **User Action Triggers Request:**
+   - A user interaction, such as submitting a prompt through a form, initiates a data fetch request. This action is handled by a React component, like `PromptInput`.
 
-   - The user interacts with the `PromptInput` component by typing a prompt and submitting the form.
+2. **Send Request to Backend:**
+   - The frontend uses the `fetch` API to send a POST request to the backend with the user's input. The request is directed to the appropriate backend endpoint.
 
-2. **PromptInput Component**:
+3. **Manage Loading and Error States:**
+   - The frontend manages loading states to indicate data fetching and error states to handle any issues during the request. It updates the state based on the response received from the backend.
 
-   - Captures the user's input and calls a handler function with the prompt.
+4. **Receive and Display Data:**
+   - Once the data is received, the frontend updates its state and re-renders the UI to display the results. Components like `AIResults` use the data to show the fetched results to the user.
 
-3. **App Component**:
+#### Backend
 
-   - Maintains the state of the prompt.
-   - Passes the prompt to the `useHuggingFaceAPI` hook to trigger the GraphQL query.
-   - Renders `PromptInput` and `AIResults` components.
+1. **Receive Request:**
+   - The backend, built with Express.js, has routes set up to handle incoming API requests. Each route corresponds to a specific service, like `flanT5Small`, `byt5Small`, `phi2`, or `mt5Small`.
 
-4. **useHuggingFaceAPI Hook**:
-   - Uses Apollo Client to send the GraphQL query to the backend with the user's prompt.
-   - Manages loading and error states.
-   - Updates the state with the received data.
+2. **Process Request:**
+   - The backend processes the incoming request by calling external APIs or services with the provided data. It uses modules like `node-fetch` to communicate with these services.
 
-#### 2. Backend
+3. **Transform Data:**
+   - The backend processes the responses from external services, transforming the data as needed to match the frontend's requirements.
 
-1. **API Configurations**:
+4. **Send Response:**
+   - After processing the request, the backend sends the transformed data back to the frontend. This response contains the results fetched from the external services. 
 
-   - Define API endpoints in a configuration file (e.g., `apis.js`).
-
-2. **GraphQL Schema**:
-
-   - Define the type definitions for the queries using the API configurations (e.g., `typeDefs`).
-
-3. **GraphQL Resolvers**:
-
-   - Implement resolver functions to handle the queries.
-   - Each resolver fetches data from the respective API endpoint.
-
-4. **Express Server Setup**:
-   - Configure and start an Express server.
-   - Integrate Apollo Server with the Express app to handle GraphQL requests.
-
-#### Data Flow Summary
-
-1. **User Submits Prompt**:
-
-   - User enters a prompt in the `PromptInput` component and submits the form.
-   - The `App` component receives the prompt and triggers the `useHuggingFaceAPI` hook.
-
-2. **GraphQL Query**:
-
-   - The `useHuggingFaceAPI` hook sends a GraphQL query to the backend with the user's prompt.
-
-3. **Backend Processing**:
-
-   - The GraphQL server receives the query.
-   - The resolver functions fetch data from the specified API endpoints.
-   - The fetched data is returned to the frontend.
-
-4. **Display Results**:
-   - The `useHuggingFaceAPI` hook updates the state with the received data.
-   - The `AIResults` component renders the data, showing the results to the user.
+By following these steps, the frontend and backend work together seamlessly to fetch, process, and display data based on user interactions.

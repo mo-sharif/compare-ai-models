@@ -1,5 +1,8 @@
+'use client';
+
 import React, { useState, useCallback } from "react";
 import { useSpring, animated } from "react-spring";
+import PropTypes from 'prop-types';
 
 const PromptInput = ({ onSubmit, loading }) => {
   const props = useSpring({ opacity: 1, from: { opacity: 0 } });
@@ -34,6 +37,11 @@ const PromptInput = ({ onSubmit, loading }) => {
       </form>
     </animated.div>
   );
+};
+
+PromptInput.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default PromptInput;
