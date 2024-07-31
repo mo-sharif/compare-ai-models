@@ -7,7 +7,19 @@ This app uses GraphQL to integrate multiple AI models for generating responses f
 - [🌿GraphQL branch](https://github.com/mo-sharif/huggingface-ai-compare/tree/feature/rsc-integration)
 - [🌿React Server Components branch](https://github.com/mo-sharif/huggingface-ai-compare/tree/feature/graphql-integration)
 
-### App Structure
+### Start App
+
+```
+cd frontend
+npm run start
+
+cd backend
+npm run start
+```
+
+### App Structure w/ GraphQL
+
+See branches above for different app structures
 
 See branches above for different app structures
 
