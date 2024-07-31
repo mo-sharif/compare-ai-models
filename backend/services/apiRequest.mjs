@@ -5,6 +5,7 @@ export async function queryAPI(url, data) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
         },
         body: JSON.stringify(data),
     });

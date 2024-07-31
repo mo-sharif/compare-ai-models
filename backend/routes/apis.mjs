@@ -6,6 +6,7 @@ const router = express.Router();
 
 apiConfigs.forEach(api => {
     router.post(`/${api.name}`, async (req, res) => {
+
         try {
             const result = await queryAPI(api.url, req.body);
             res.json(result);

@@ -1,6 +1,7 @@
 import React, { useState, Suspense } from 'react';
 import PromptInput from '../components/PromptInput.client.js';
-import AIResults, { fetchAIResults } from '../components/AIResults.server';
+import AIResults from '../components/AIResults.server';
+import { fetchAIResults } from '../utils/fetchAIResults.js';
 import ErrorBoundary from '../components/ErrorBoundary.js'
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
     setError(null);
 
     try {
-      const results = await fetchAIResults(prompt);
+      const results = await fetchAIResults(prompt, setData, setError).finally(() => setLoading(false));
       setData(results);
     } catch (err) {
       setError(err.message);

@@ -3,7 +3,6 @@ import { useSpring, animated } from 'react-spring';
 import { InfoCircle, Brain } from './Icons';
 import PropTypes from 'prop-types';
 import { renderSkeletons } from '../utils/renderSkeletons.js';
-import { fetchData } from '../utils/fetchData.js';
 
 const googleLogo = "https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png";
 const byte5Logo = "https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png";
@@ -63,17 +62,6 @@ AIResults.propTypes = {
   data: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string,
-};
-
-export const fetchAIResults = async (prompt) => {
-  const [flanT5Small, byt5Small, phi2, mt5Small] = await Promise.all([
-    fetchData('flanT5Small', prompt),
-    fetchData('byt5Small', prompt),
-    fetchData('phi2', prompt),
-    fetchData('mt5Small', prompt),
-  ]);
-
-  return { flanT5Small, byt5Small, phi2, mt5Small };
 };
 
 export default AIResults;
