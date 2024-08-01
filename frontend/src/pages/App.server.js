@@ -20,7 +20,7 @@ const App = () => {
   return (
     <ErrorBoundary>
       <div className="App">
-        <h1>Compare AI Modals</h1>
+        <h1>Compare AI models</h1>
         <PromptInput onSubmit={handleSubmit} loading={loading} />
         <Suspense fallback={<div>Loading...</div>}>
           <AIResults data={data} loading={loading} error={error} />

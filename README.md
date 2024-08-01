@@ -1,4 +1,4 @@
-# Compare AI Modals
+# Compare AI models
 
 This app uses GraphQL to integrate multiple AI models for generating responses from user prompts. Users type a prompt, and the app queries different AI models like Flan-T5, Byte5, Phi2, and MT5. The results are displayed side-by-side for easy comparison. This is ideal for developers, researchers, and AI enthusiasts who want to test and compare different AI models for tasks like text generation and sentiment analysis. The app uses React for the frontend and Apollo Server for the backend, ensuring a fast and smooth user experience.
 
