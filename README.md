@@ -21,10 +21,6 @@ npm run start
 
 ### App Structure w/ GraphQL
 
-See branches above for different app structures
-
-See branches above for different app structures
-
 ```
 my-app/
 ├── backend/
