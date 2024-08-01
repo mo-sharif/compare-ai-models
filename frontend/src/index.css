@@ -107,6 +107,10 @@ body {
   margin-right: 0;
 }
 
+h1, h2 {
+  color: var(--text-color);
+}
+
 
 h3 {
   color: #007aff;

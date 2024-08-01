@@ -28,6 +28,7 @@ const App = () => {
   return (
     <>
       <div className="App">
+        <h1>Compare AI Models</h1>
         <PromptInput onSubmit={handleSubmit} loading={loading} />
         <AIResults data={data} loading={loading} error={error} />
       </div>
