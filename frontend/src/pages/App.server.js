@@ -16,7 +16,6 @@ const App = () => {
     setPrompt(prompt);
     fetchAIResults(prompt, setData, setLoading, setError);
   };
-  console.log(loading)
   return (
     <ErrorBoundary>
       <div className="App">
