@@ -1,7 +1,9 @@
 import { fetchData } from "./fetchData";
+import config from "../config";
+
+const apis = config.apiConfigs.map(config => config.name);
 
 export const fetchAIResults = async (prompt, setData, setLoading, setError) => {
-    const apis = ['flanT5Small', 'byt5Small', 'phi2', 'mt5Small'];
 
     apis.forEach(async api => {
         setLoading(prevLoading => ({ ...prevLoading, [api]: true }));
